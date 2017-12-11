@@ -21,17 +21,18 @@ modelling:
 
 To do:
 
-preprocessing:
+preprocessing - Mario & Chris
 - scaling/normalising
 - use decision tree to eliminate variables
 - try not dummy coding (using decision tree)
 
 modelling:
 tuning:
-- xgboost
-- random forest
-- gradient boosting
-- adaboost
+- xgboost - Dhruv
 
-- ensembles (voting)
-- neural networks
+- random forest - Chethan 
+- gradient boosting - Chethan
+- adaboost - Chethan
+
+- ensembles (voting) - Avan
+- neural networks - Avan

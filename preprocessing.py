@@ -15,7 +15,7 @@ from sklearn.decomposition import PCA
 from sklearn import preprocessing
 import matplotlib.pyplot as plt
 
-def preprocess(normalized):
+def preprocess(normalized, dt_fs):
 
     training = pd.read_csv('./training.csv')
     test = pd.read_csv('./test.csv')
@@ -94,7 +94,6 @@ def preprocess(normalized):
             column_norm = preprocessing.scale(column_data)
             X_norm[column] = column_norm
         X_combined = X_norm
-        print(X_combined["VehicleAge"])
 
     prices = X_combined[['MMRAcquisitionAuctionAveragePrice',	'MMRAcquisitionAuctionCleanPrice', 'MMRAcquisitionRetailAveragePrice','MMRAcquisitonRetailCleanPrice',
                      'MMRCurrentAuctionAveragePrice','MMRCurrentAuctionCleanPrice','MMRCurrentRetailAveragePrice', 'MMRCurrentRetailCleanPrice']].values
@@ -109,6 +108,11 @@ def preprocess(normalized):
     X_train2 = X_done[:X_train.shape[0]][:]
     X_test2 = X_done[X_train.shape[0]:][:]
 
+    if (dt_fs):
+        kept = ['wheel_0.0', 'VehicleAge', 'auction_MANHEIM', 'VehBCost', 'byrno_99750', 'state_MD']
+        X_train2 = X_train2[kept]
 
     X_train3, X_test3, y_train3, y_test3 = train_test_split(X_train2, y_train, test_size=0.33, random_state=42)
     return(X_train2, y_train)
+
+preprocess(True, True)

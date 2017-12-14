@@ -99,6 +99,8 @@ def preprocess(normalized, dt_fs):
                      'MMRCurrentAuctionAveragePrice','MMRCurrentAuctionCleanPrice','MMRCurrentRetailAveragePrice', 'MMRCurrentRetailCleanPrice']].values
     pca = PCA(n_components = 2)
     prices = pca.fit_transform(prices)
+    #print(pca.components_)
+    #print(pca.explained_variance_ratio_)
     prices = pd.DataFrame(prices)
     X_combined = X_combined.drop(['MMRAcquisitionAuctionAveragePrice',	'MMRAcquisitionAuctionCleanPrice', 'MMRAcquisitionRetailAveragePrice','MMRAcquisitonRetailCleanPrice',
                      'MMRCurrentAuctionAveragePrice','MMRCurrentAuctionCleanPrice','MMRCurrentRetailAveragePrice', 'MMRCurrentRetailCleanPrice'], axis =1)
@@ -114,5 +116,3 @@ def preprocess(normalized, dt_fs):
 
     X_train3, X_test3, y_train3, y_test3 = train_test_split(X_train2, y_train, test_size=0.33, random_state=42)
     return(X_train2, y_train)
-
-preprocess(True, True)

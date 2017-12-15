@@ -41,7 +41,7 @@ def get_column_name(data, index):
 # y = column(initial, 1)[1:]
 # X = submatrix(initial,2,1)
 
-X, y = preprocess(True)
+X, y = preprocess(True, False)
 
 for i in [62, 0, 7, 2, 191, 92]:
     get_column_name(X,i)

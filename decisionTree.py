@@ -49,11 +49,11 @@ for i in [62, 0, 7, 2, 191, 92]:
 # print(y)
 
 my_scorer = make_scorer(my_scoring)
-gcv = GridSearchCV(DecisionTreeClassifier(criterion='entropy'), param_grid={'max_depth': range(1,5)}, scoring=my_scorer)
+gcv = GridSearchCV(DecisionTreeClassifier(criterion='gini'), param_grid={'max_depth': range(1,5)}, scoring=my_scorer)
 gcv.fit(X, y)
 print('Best depth parameter = %d' % gcv.best_params_['max_depth'])
 
-dt = DecisionTreeClassifier(criterion='entropy', max_depth= gcv.best_params_['max_depth'])
+dt = DecisionTreeClassifier(criterion='gini', max_depth= gcv.best_params_['max_depth'])
 dt.fit(X, y)
 cm = confusion_matrix(y, dt.predict(X))
 
